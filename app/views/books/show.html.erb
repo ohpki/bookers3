@@ -21,9 +21,11 @@
 
           <tr>
             <td><%= image_tag @book.user.get_profile_image, size:'50x50'%><br>
-            <%= link_to @book.user.name, user_path(@book.user.id) %></td>
+              <%= link_to @book.user.name, user_path(@book.user.id) %>
+            </td>
             <td><%= @book.title %></td>
             <td><%= @book.body %></td>
+            <td><%= render 'favorites/favorite', book: @book %></td>
             <% if @book.user == current_user %>
               <td><%= link_to "Edit", edit_book_path(@book) %></td>
               <td><%= link_to "Destroy", @book, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
