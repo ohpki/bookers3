@@ -31,7 +31,21 @@
               <td><%= link_to "Destroy", @book, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
             <% else %>
             <% end %>
+
             </tr>
+        </table>
+        <table>
+          <tr class="book_comments">
+            <%= render 'book_comments/index', book_comments: @book_comments %>
+
+          </tr>
+          <tr id="book_<%= @book.id %>">
+              <%= form_with(model:[@book, @book_comment], local:false) do |f| %>
+                  <%= f.text_area :comment %>
+
+                  <%= f.submit %>
+              <% end %>
+          </tr>
         </table>
       </div>
     </div>

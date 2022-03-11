@@ -13,12 +13,18 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @book = Book.new
-
+    @book_comment = BookComment.new
   end
+
 
   def show
     @book = Book.find(params[:id])
     @user = @book.user
+    @book_comment = BookComment.new
+    @book_comments = BookComment.where(book_id: @book.id)
+    # @book_comments = @book.book_comments  #投稿詳細に関連付けてあるコメントを全取得
+    # @comment = current_user.book_comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
+    # @book_comment = BookComment.new
 
   end
 
